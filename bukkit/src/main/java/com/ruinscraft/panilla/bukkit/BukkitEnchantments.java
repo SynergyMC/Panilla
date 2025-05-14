@@ -67,8 +67,8 @@ public class BukkitEnchantments implements IEnchantments {
             try {
                 Method getByKey = Enchantment.class.getDeclaredMethod("getByKey", NamespacedKey.class);
                 bukkitEnchantment = (Enchantment) getByKey.invoke(null,
-                        new NamespacedKey(enchCompat.namedKey.split(":")[0],
-                                enchCompat.namedKey.split(":")[1]));
+                    new NamespacedKey(enchCompat.namedKey.split(":")[0],
+                        enchCompat.namedKey.split(":")[1]));
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {

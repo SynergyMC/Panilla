@@ -1,6 +1,6 @@
 allprojects {
     group = 'com.ruinscraft'
-    version = '1.12.3'
+    version = '1.13.0'
 }
 
 subprojects {
@@ -12,10 +12,16 @@ subprojects {
         maven {
             url 'https://repo.codemc.io/repository/maven-public/'
         }
+        maven {
+            url 'https://repo.codemc.io/repository/nms-local/'
+        }
+        maven {
+            url 'https://repo.codemc.io/repository/nms-remote/'
+        }
+        maven {
+            url 'https://repo.papermc.io/repository/maven-public/' // Authlib, thank you PaperMC
+        }
     }
-
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
 }
 
 task clean {
