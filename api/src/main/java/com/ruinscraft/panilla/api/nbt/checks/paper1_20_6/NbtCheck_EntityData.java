@@ -94,6 +94,10 @@ public class NbtCheck_EntityData extends NbtCheck {
             }
         }
 
+        if (entityTag.hasKey("Owner")) {
+            return NbtCheckResult.FAIL;
+        }
+
         if (entityTag.hasKey("ExplosionPower")) {
             result = NbtCheckResult.FAIL;
         }
