@@ -48,11 +48,11 @@ public class NbtCheck_Container extends NbtCheck {
     }
 
     public static FailedNbtList checkItem(INbtTagCompound item, String itemName, IPanilla panilla) {
-        if (item.hasKey("tag")) {
-            return NbtChecks.checkAll(item.getCompound("tag"), itemName, panilla);
-        } else {
+        INbtTagCompound itemNbt = NbtChecks.extractItemNbt(item);
+        if (itemNbt == null) {
             return new FailedNbtList();
         }
+        return NbtChecks.checkAll(itemNbt, itemName, panilla);
     }
 
     @Override

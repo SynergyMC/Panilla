@@ -179,4 +179,16 @@ public final class NbtChecks {
         return failedNbtList;
     }
 
+    public static INbtTagCompound extractItemNbt(INbtTagCompound rootTag) {
+        INbtTagCompound itemTag = null;
+        if (rootTag.hasKey("tag")) {
+            itemTag = rootTag.getCompound("tag");
+        } else if (rootTag.hasKey("item")) {
+            itemTag = rootTag.getCompound("item");
+            if (itemTag.hasKey("components")) {
+                itemTag = itemTag.getCompound("components");
+            }
+        }
+        return itemTag;
+    }
 }

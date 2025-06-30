@@ -23,10 +23,9 @@ public class NbtCheck_EntityTag extends NbtCheck {
         FailedNbt failedNbt = null;
 
         for (int i = 0; i < items.size(); i++) {
-            INbtTagCompound item = items.getCompound(i);
-
-            if (item.hasKey("tag")) {
-                FailedNbtList failedNbtList = NbtChecks.checkAll(item.getCompound("tag"), nmsItemClassName, panilla);
+            INbtTagCompound itemNbt = NbtChecks.extractItemNbt(items.getCompound(i));
+            if (itemNbt != null) {
+                FailedNbtList failedNbtList = NbtChecks.checkAll(itemNbt, nmsItemClassName, panilla);
 
                 if (failedNbtList.containsCritical()) {
                     return failedNbtList.getCritical();

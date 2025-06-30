@@ -41,18 +41,15 @@ public class NbtCheck_pages extends NbtCheck {
 
     private static int getCharCountForItem(INbtTagCompound item) {
         int charCount = 0;
+        INbtTagCompound itemNbt = NbtChecks.extractItemNbt(item);
 
-        if (item.hasKey("tag")) {
-            INbtTagCompound tag = item.getCompound("tag");
+        if (itemNbt != null && itemNbt.hasKey("pages")) {
+            INbtTagList pages = itemNbt.getList("pages", NbtDataType.STRING);
 
-            if (tag.hasKey("pages")) {
-                INbtTagList pages = tag.getList("pages", NbtDataType.STRING);
-
-                for (int i = 0; i < pages.size(); i++) {
-                    final String page = pages.getString(i);
-                    final String pageNoSpaces = page.replace(" ", "");
-                    charCount += pageNoSpaces.length();
-                }
+            for (int i = 0; i < pages.size(); i++) {
+                final String page = pages.getString(i);
+                final String pageNoSpaces = page.replace(" ", "");
+                charCount += pageNoSpaces.length();
             }
         }
 

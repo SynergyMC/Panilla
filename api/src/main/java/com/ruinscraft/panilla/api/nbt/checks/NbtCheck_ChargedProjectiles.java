@@ -18,18 +18,14 @@ public class NbtCheck_ChargedProjectiles extends NbtCheck {
         INbtTagList chargedProjectiles = tag.getList("ChargedProjectiles", NbtDataType.COMPOUND);
 
         for (int i = 0; i < chargedProjectiles.size(); i++) {
-            INbtTagCompound chargedProjectile = chargedProjectiles.getCompound(i);
+            INbtTagCompound chargedProjectile = NbtChecks.extractItemNbt(chargedProjectiles.getCompound(i));
 
-            if (chargedProjectile.hasKey("tag")) {
-                INbtTagCompound chargedProjectileTag = chargedProjectile.getCompound("tag");
+            if (chargedProjectile != null && chargedProjectile.hasKey("Potion")) {
+                String potion = chargedProjectile.getString("Potion");
 
-                if (chargedProjectileTag.hasKey("Potion")) {
-                    String potion = chargedProjectileTag.getString("Potion");
-
-                    if (potion.endsWith("empty")) {
-                        result = NbtCheckResult.FAIL;
-                        break;
-                    }
+                if (potion.endsWith("empty")) {
+                    result = NbtCheckResult.FAIL;
+                    break;
                 }
             }
         }
