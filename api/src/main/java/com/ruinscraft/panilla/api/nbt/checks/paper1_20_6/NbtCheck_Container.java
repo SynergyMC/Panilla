@@ -84,12 +84,10 @@ public class NbtCheck_Container extends NbtCheck {
 
         FailedBlockEntityTagItemsNbt failedNbt = checkItems(getName(), items, itemName, panilla);
 
-        // Only remove NBT from shulkerbox if it contains a CRITICAL item
         if (failedNbt.critical()) {
             return NbtCheckResult.CRITICAL;
         }
-
-        return NbtCheckResult.PASS;
+        return failedNbt.result;
     }
 
 }

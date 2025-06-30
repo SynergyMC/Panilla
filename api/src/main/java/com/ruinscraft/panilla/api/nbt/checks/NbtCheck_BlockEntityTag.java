@@ -128,14 +128,11 @@ public class NbtCheck_BlockEntityTag extends NbtCheck {
             INbtTagList items = blockEntityTag.getList("Items", NbtDataType.COMPOUND);
             FailedBlockEntityTagItemsNbt failedNbt = checkItems(getName(), items, itemName, panilla);
 
-            // Only remove NBT from shulkerbox if it contains a CRITICAL item
             if (failedNbt.critical()) {
                 return NbtCheckResult.CRITICAL;
+            } else if (failedNbt.result == NbtCheckResult.FAIL) {
+                return NbtCheckResult.FAIL;
             }
-
-//            if (FailedNbt.fails(failedNbt)) {
-//                return failedNbt.result;
-//            }
         }
 
         // /give @p furnace{BlockEntityTag:{RecipesUsed:{"minecraft:bow":1}}} 1
