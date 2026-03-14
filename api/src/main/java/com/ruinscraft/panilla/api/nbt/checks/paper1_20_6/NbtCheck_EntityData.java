@@ -15,7 +15,8 @@ import java.util.UUID;
 
 public class NbtCheck_EntityData extends NbtCheck {
 
-    private static final String[] ARMOR_STAND_TAGS = new String[]{"NoGravity", "ShowArms", "NoBasePlate", "Small", "Rotation", "Marker", "Pose", "Invisible"};
+    private static final String[] ARMOR_STAND_TAGS = new String[] { "NoGravity", "ShowArms", "NoBasePlate", "Small",
+            "Rotation", "Marker", "Pose", "Invisible" };
 
     public NbtCheck_EntityData() {
         super("minecraft:entity_data", PStrictness.LENIENT);
@@ -28,7 +29,8 @@ public class NbtCheck_EntityData extends NbtCheck {
             INbtTagCompound item = items.getCompound(i);
 
             if (item.hasKey("components")) {
-                FailedNbtList failedNbtList = NbtChecks.checkAll(item.getCompound("components"), nmsItemClassName, panilla);
+                FailedNbtList failedNbtList = NbtChecks.checkAll(item.getCompound("components"), nmsItemClassName,
+                        panilla);
 
                 if (failedNbtList.containsCritical()) {
                     return failedNbtList.getCritical();
@@ -236,7 +238,7 @@ public class NbtCheck_EntityData extends NbtCheck {
             }
 
             if (entityTag.hasKeyOfType("ActiveEffects", NbtDataType.LIST)) {
-                INbtTagList effectsList = entityTag.getList("ActiveEffects");
+                INbtTagList effectsList = entityTag.getList("ActiveEffects", NbtDataType.COMPOUND);
                 NbtCheckResult effectsResult = checkEffectsTag(effectsList);
                 if (effectsResult == NbtCheckResult.CRITICAL) {
                     return NbtCheckResult.CRITICAL;

@@ -13,7 +13,8 @@ import java.util.UUID;
 
 public class NbtCheck_EntityTag extends NbtCheck {
 
-    private static final String[] ARMOR_STAND_TAGS = new String[]{"NoGravity", "ShowArms", "NoBasePlate", "Small", "Rotation", "Marker", "Pose", "Invisible"};
+    private static final String[] ARMOR_STAND_TAGS = new String[] { "NoGravity", "ShowArms", "NoBasePlate", "Small",
+            "Rotation", "Marker", "Pose", "Invisible" };
 
     public NbtCheck_EntityTag() {
         super("EntityTag", PStrictness.LENIENT);
@@ -240,7 +241,7 @@ public class NbtCheck_EntityTag extends NbtCheck {
             }
 
             if (entityTag.hasKeyOfType("Effects", NbtDataType.LIST)) {
-                INbtTagList effectsList = entityTag.getList("Effects");
+                INbtTagList effectsList = entityTag.getList("Effects", NbtDataType.COMPOUND);
                 NbtCheckResult effectsResult = checkEffectsTag(effectsList);
                 if (effectsResult == NbtCheckResult.CRITICAL) {
                     return NbtCheckResult.CRITICAL;
@@ -250,7 +251,7 @@ public class NbtCheck_EntityTag extends NbtCheck {
             }
 
             if (entityTag.hasKeyOfType("effects", NbtDataType.LIST)) {
-                INbtTagList effectsList = entityTag.getList("effects");
+                INbtTagList effectsList = entityTag.getList("effects", NbtDataType.COMPOUND);
                 NbtCheckResult effectsResult = checkEffectsTag(effectsList);
                 if (effectsResult == NbtCheckResult.CRITICAL) {
                     return NbtCheckResult.CRITICAL;

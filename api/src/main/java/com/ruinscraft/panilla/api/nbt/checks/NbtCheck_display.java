@@ -59,7 +59,7 @@ public class NbtCheck_display extends NbtCheck {
                     }
                 } catch (Exception e) {
                     // could not parse Json
-                    return NbtCheckResult.CRITICAL;  // can cause crashes
+                    return NbtCheckResult.CRITICAL; // can cause crashes
                 }
             }
 
@@ -78,7 +78,7 @@ public class NbtCheck_display extends NbtCheck {
         }
 
         if (display.hasKeyOfType("Lore", NbtDataType.LIST)) {
-            INbtTagList lore = display.getList("Lore");
+            INbtTagList lore = display.getList("Lore", NbtDataType.STRING);
 
             if (lore.size() > panilla.getProtocolConstants().NOT_PROTOCOL_maxLoreLines()) {
                 return NbtCheckResult.CRITICAL; // can cause crashes

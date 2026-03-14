@@ -5,6 +5,7 @@ import com.ruinscraft.panilla.api.config.PStrictness;
 import com.ruinscraft.panilla.api.exception.FailedNbt;
 import com.ruinscraft.panilla.api.nbt.INbtTagCompound;
 import com.ruinscraft.panilla.api.nbt.INbtTagList;
+import com.ruinscraft.panilla.api.nbt.NbtDataType;
 
 // Similar to BlockEntityTag
 // Used mainly for Bundles (1.17)
@@ -16,7 +17,7 @@ public class NbtCheck_Items extends NbtCheck {
 
     @Override
     public NbtCheck.NbtCheckResult check(INbtTagCompound tag, String itemName, IPanilla panilla) {
-        INbtTagList itemsTagList = tag.getList(getName());
+        INbtTagList itemsTagList = tag.getList(getName(), NbtDataType.COMPOUND);
 
         // Bundles should only have 64 items
         if (itemsTagList.size() > 64) {
